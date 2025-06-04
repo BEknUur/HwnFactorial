@@ -186,7 +186,7 @@ export const useChatStore = create<ChatState>()(
     { name: 'chat-storage' },          
   ),
 );
-function xaiChat(arg0: any[]): string | PromiseLike<string> {
+function xaiChat(_arg0: any[]): string | PromiseLike<string> {
   throw new Error('Function not implemented.');
 }
 
