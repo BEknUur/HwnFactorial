@@ -1,0 +1,4 @@
+langchain_openai==0.3.19
+pydantic_ai==0.2.14
+python-dotenv==1.1.0
+websockets==15.0.1
