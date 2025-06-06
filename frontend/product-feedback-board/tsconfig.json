@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "useDefineForClassFields": true,
+  
+      /* Библиотеки JS/DOM */
+      "lib": ["DOM", "DOM.Iterable", "ESNext"],
+  
+      /* Модули */
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+  
+      /* Строгая типизация */
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true,
+  
+      /* React-специфика */
+      "jsx": "react-jsx",
+  
+      /* Поддержка импорта из Vite */
+      "types": ["vite/client"],
+"allowSyntheticDefaultImports": true
+    },
+    "include": ["src"]
+  }
+  
