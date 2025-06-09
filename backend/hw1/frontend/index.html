@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Task List – FastAPI Demo</title>
+  <style>
+    body { font-family: sans-serif; max-width: 40rem; margin: 2rem auto; }
+    li.done { text-decoration: line-through; color: gray; }
+    button { margin-left: .5rem; }
+  </style>
+</head>
+<body>
+  <h1>📋 Tasks</h1>
+
+  <form id="add-form">
+    <input id="title" placeholder="New task…" required />
+    <button>Add</button>
+  </form>
+
+  <ul id="task-list"></ul>
+
+<script>
+const API = "http://localhost:8000/tasks/";
+const listEl = document.getElementById("task-list");
+const form = document.getElementById("add-form");
+const titleInput = document.getElementById("title");
+
+async function load() {
+  const tasks = await fetch(API).then(r => r.json());
+  listEl.innerHTML = "";
+  tasks.forEach(t => {
+    const li = document.createElement("li");
+    li.textContent = t.title;
+    li.className = t.done ? "done" : "";
+    
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = t.done ? "↺" : "✔";
+    toggleBtn.onclick = async () => {
+      await fetch(API + t.id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: t.title, description: t.description, done: !t.done })
+      });
+      load();
+    };
+   
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "🗑";
+    delBtn.onclick = async () => {
+      await fetch(API + t.id, { method: "DELETE" });
+      load();
+    };
+    li.append(toggleBtn, delBtn);
+    listEl.appendChild(li);
+  });
+}
+
+form.onsubmit = async e => {
+  e.preventDefault();
+  await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title: titleInput.value })
+  });
+  titleInput.value = "";
+  load();
+};
+
+
+load();
+</script>
+</body>
+</html>
