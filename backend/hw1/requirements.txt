@@ -1,8 +1,0 @@
-fastapi 
-uvicorn[standart]
-sqlmodel
-python-multipart
-passlib[bcrypt]
-python-jose[cryptography] 
-psycopg2-binary
-python-dotenv
