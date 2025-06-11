@@ -6,4 +6,3 @@ pydantic<2.0,>=1.10.0
 python-dotenv
 celery[redis]
 redis
-requests

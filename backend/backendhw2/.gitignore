@@ -1,1 +1,14 @@
+# environment
 .env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# virtual env
+venv/
+env/
+ENV/
+
+# OS
+.DS_Store
