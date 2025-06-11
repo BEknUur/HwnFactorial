@@ -1,21 +1,17 @@
-import os
-import requests
+import os, requests
 from datetime import datetime
-from sqlalchemy.orm import Session
 from celery.utils.log import get_task_logger
+from sqlalchemy.orm import Session
 
 from app.celery_app import celery
 from app.db.session import SessionLocal
 from app.db.models.data import DataRecord
 
 FETCH_URL = os.getenv("FETCH_DATA_URL")
-
-
 logger = get_task_logger(__name__)
 
 @celery.task(name="app.tasks.fetch_data.fetch_and_save_data")
 def fetch_and_save_data():
-    """Fetch JSON data from FETCH_URL and save it into the database."""
     try:
         resp = requests.get(FETCH_URL, timeout=10)
         resp.raise_for_status()
@@ -26,12 +22,9 @@ def fetch_and_save_data():
     data_json = resp.json()
     db: Session = SessionLocal()
     try:
-        record = DataRecord(
-            timestamp=datetime.utcnow(),
-            content=data_json
-        )
-        db.add(record)
+        r = DataRecord(timestamp=datetime.utcnow(), content=data_json)
+        db.add(r)
         db.commit()
-        logger.info(f"Saved data record id={record.id}")
+        logger.info(f"Saved data record id={r.id}")
     finally:
         db.close()

@@ -1,14 +1,24 @@
 # environment
 .env
 
-# Python cache
+# Python bytecode
 __pycache__/
 *.py[cod]
 
-# virtual env
+# Celery beat schedule file
+celerybeat-schedule
+
+# Virtualenvs
 venv/
 env/
 ENV/
 
-# OS
+# Logs
+*.log
+
+# IDE/editor
+.vscode/
+.idea/
+
+# macOS
 .DS_Store

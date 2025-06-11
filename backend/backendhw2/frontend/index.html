@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chatbot UI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Agent-to-Agent Chatbot</h1>
+    <label>
+      Provider:
+      <select id="provider">
+        <option value="openai">OpenAI</option>
+        <option value="gemini">Gemini</option>
+        <option value="a2a">A2A</option>
+      </select>
+    </label>
+    <textarea id="prompt" placeholder="Type your prompt…"></textarea>
+    <button id="send">Send</button>
+    <pre id="response"></pre>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>

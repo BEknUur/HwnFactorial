@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseSettings
 
 class Settings(BaseSettings):
@@ -11,10 +12,10 @@ class Settings(BaseSettings):
     REDIS_URL: str
     CELERY_BROKER_URL: str
     CELERY_RESULT_BACKEND: str
-    FETCH_DATA_URL:str
-    OPENAI_API_KEY:str
-    GEMINI_API_KEY:str
 
+    FETCH_DATA_URL: str
+    OPENAI_API_KEY: Optional[str] = None
+    GEMINI_API_KEY: Optional[str] = None
 
     class Config:
         env_file = ".env"

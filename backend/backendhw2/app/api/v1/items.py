@@ -20,3 +20,5 @@ def create_user(name: str, db: Session = Depends(get_db)):
     
     example_task.delay(user.id)
     return user
+
+
